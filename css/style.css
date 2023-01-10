@@ -1,3 +1,18 @@
-.mosca{
+.mosca1{
     width: 50px;
+}
+.mosca2{
+    width: 70px;
+}
+.mosca3{
+    width: 90px;
+}
+
+
+.ladoA{
+    transform: scaleX(1);
+}
+
+.ladoB{
+    transform: scaleX(-1);
 }
