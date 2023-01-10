@@ -2,6 +2,21 @@ let altura = 0
 let largura = 0
 let vidas = 1
 let tempo = 10
+let ciraMoscaTempo = 1500
+let nivel = window.location.search//encontra o nível apartir do atributo enviado por parametro
+
+
+nivel = nivel.replace('?', '')
+
+if(nivel === 'normal'){
+    ciraMoscaTempo = 1500
+}else if (nivel === 'dificil'){
+    ciraMoscaTempo = 1000
+}else if (nivel === 'impossivel'){
+    ciraMoscaTempo = 750
+}
+
+
 
 //capitura o tamanho da tela
 function ajustaTAmanhoPalcoJogo() {
@@ -21,6 +36,7 @@ var cronometro = setInterval(function () {
     if (tempo < 0) {
         clearInterval(cronometro)
         clearInterval(criaMosca)
+        window.location.href = 'vitoria.html'
     } else {
 
         document.getElementById('cronometro').innerHTML = tempo
@@ -96,4 +112,16 @@ function ladoAleatorio() {
             return 'ladoB';
 
     }
+}
+
+
+//Selecionar nível do jogo
+
+function iniciarJogo(){
+    let nivel = document.getElementById('nivel').value
+    if (nivel === ' '){
+        alert('Selecione um nível para iniciar o jogo')
+        return false
+    }
+    window.location.href="app.html?"+nivel
 }
