@@ -1,6 +1,6 @@
 let altura = 0
 let largura = 0
-
+let vidas =1
 //capitura o tamanho da tela
 function ajustaTAmanhoPalcoJogo() {
     altura = window.innerHeight;
@@ -16,6 +16,15 @@ function posicaoRandomica() {
     //removar mosquito anterior caso exista
     if(document.getElementById('mosca')){
         document.getElementById('mosca').remove();
+
+        if(vidas>3){
+            window.location.href='fimDeJogo.html'
+        }else{
+              document.getElementById('v'+ vidas).src="imagens/coracao_vazio.png";
+
+        vidas++ 
+        }
+     
     }
 
 
