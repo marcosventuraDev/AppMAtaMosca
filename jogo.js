@@ -1,6 +1,8 @@
 let altura = 0
 let largura = 0
-let vidas =1
+let vidas = 1
+let tempo = 10
+
 //capitura o tamanho da tela
 function ajustaTAmanhoPalcoJogo() {
     altura = window.innerHeight;
@@ -11,20 +13,36 @@ function ajustaTAmanhoPalcoJogo() {
 
 ajustaTAmanhoPalcoJogo()
 
+
+//implementando cronometro
+var cronometro = setInterval(function () {
+    tempo -= 1
+
+    if (tempo < 0) {
+        clearInterval(cronometro)
+        clearInterval(criaMosca)
+    } else {
+
+        document.getElementById('cronometro').innerHTML = tempo
+    }
+}, 1000)
+//cronometro Fim
+
+
 function posicaoRandomica() {
 
     //removar mosquito anterior caso exista
-    if(document.getElementById('mosca')){
+    if (document.getElementById('mosca')) {
         document.getElementById('mosca').remove();
 
-        if(vidas>3){
-            window.location.href='fimDeJogo.html'
-        }else{
-              document.getElementById('v'+ vidas).src="imagens/coracao_vazio.png";
+        if (vidas > 3) {
+            window.location.href = 'fimDeJogo.html'
+        } else {
+            document.getElementById('v' + vidas).src = "imagens/coracao_vazio.png";
 
-        vidas++ 
+            vidas++
         }
-     
+
     }
 
 
@@ -33,8 +51,8 @@ function posicaoRandomica() {
 
     positons = [positionX, positionY];
 
-   positionX = positionX < 0 ? 0 : positionX;
-    positionY = positionY < 0 ? 0 : positionY ;
+    positionX = positionX < 0 ? 0 : positionX;
+    positionY = positionY < 0 ? 0 : positionY;
 
 
 
@@ -47,7 +65,7 @@ function posicaoRandomica() {
     mosca.style.left = positionX + 'px';
     mosca.style.top = positionY + 'px';
     mosca.id = 'mosca';
-    mosca.onclick= function(){
+    mosca.onclick = function () {
         this.remove()
     }
 
@@ -55,11 +73,11 @@ function posicaoRandomica() {
     tamanhoAleatorio();
 }
 
-function tamanhoAleatorio(){
-    let classe = Math.floor(Math.random()*3);
+function tamanhoAleatorio() {
+    let classe = Math.floor(Math.random() * 3);
     console.log(classe);
 
-    switch(classe){
+    switch (classe) {
         case 0:
             return 'mosca1';
         case 1:
@@ -69,13 +87,13 @@ function tamanhoAleatorio(){
     }
 }
 
-function ladoAleatorio(){
-    let classe = Math.floor(Math.random()*2);
-    switch(classe){
+function ladoAleatorio() {
+    let classe = Math.floor(Math.random() * 2);
+    switch (classe) {
         case 0:
             return 'ladoA';
         case 1:
             return 'ladoB';
-       
+
     }
 }
